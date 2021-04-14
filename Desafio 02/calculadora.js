@@ -1,26 +1,41 @@
-let tipo = parseInt(prompt("Escolha um numero para operação matematica que deseja fazer: 1 - Somar, 2 - Subitrair, 3 - Mutiplicar, 4 - Dividir"));
-        
-const numero1 = parseFloat(prompt("Digite o primeiro numero"));
-const numero2 = parseFloat(prompt("Digite o segundo numero"));
+const readline = require('readline');
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+rl.question('Qual operação deseja fazer? \n somar \n subtrair \n mutiplicar \n dividir \n ', (operacao) => {
+    rl.question('Digite o primeiro valor: ', (valor1) => {
+        valor1 = parseFloat(valor1);
+        rl.question('Digite o segundo valor: ', (valor2) => {
+            valor2 = parseFloat(valor2);
 
 
-switch (tipo) {
-    case 1:
-        const resultadoSoma = numero1 + numero2
-        alert("O resultado da soma é " + resultadoSoma);
-        break;
-    case 2:
-    const resultadoSubtracao = numero1 - numero2
-        alert("O resultado da subtração é " + resultadoSubtracao);
-        break;
-    case 3:
-    const resultadoMutiplicacao = numero1 * numero2
-        alert("O resultado da mutiplicação é " + resultadoMutiplicacao);
-        break;
-    case 4:
-    const resultadoDivisao = numero1 / numero2
-        alert("O resultado da divisão é " + resultadoDivisao);
-        break;
-    default:
-    alert(tipo);
-}
+            switch (operacao) {
+                case 'somar':
+                    let resultadoSoma = valor1 + valor2
+                    console.log(`O resultado da soma é ${resultadoSoma}`);
+                    break;
+                case 'subtrair':
+                    let resultadoSubtrair = valor1 - valor2
+                    console.log(`O resultado da subtrair é ${resultadoSubtrair}`);
+                    break;
+                case 'mutiplicar':
+                    let resultadoMutiplicar = valor1 * valor2
+                    console.log(`O resultado da subtrair é ${resultadoMutiplicar}`);
+                    break;
+                case 'dividr':
+                    let resultadoDividir = valor1 / valor2
+                    if (valor2 === 0) throw new Error('Impossível fazer divisão por 0');
+                    console.log(`O resultado da subtrair é ${resultadoDividir}`);
+                    break;
+                case '':
+                    console.log('Operação invalida, dente novamente');
+                    break;
+            }
+            rl.close();
+
+        });
+    });
+});
